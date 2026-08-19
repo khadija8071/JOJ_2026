@@ -7,7 +7,12 @@ public class Utilisateur {
     private String Mdp ;
     private String Role;
 
-    public Utilisateur() {}
+    public Utilisateur(String nomComplet, String login, String mdp, String role) {
+    }
+
+    public Utilisateur() {
+
+    }
 
     public int getIdUtilisateur() {
         return IdUtilisateur;
@@ -58,5 +63,9 @@ public class Utilisateur {
                 ", Mdp='" + Mdp + '\'' +
                 ", Role='" + Role + '\'' +
                 '}';
+    }
+
+    public boolean isAdmin() {
+        return "ADMIN".equalsIgnoreCase(Role);
     }
 }

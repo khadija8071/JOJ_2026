@@ -7,7 +7,11 @@ public class Resultat {
     private int Score;
     private int Rang ;
 
+    public Resultat(int idAthlete, int idCompetition, double score, int rang) {
+    }
+
     public Resultat() {
+
     }
 
     public int getIdResultat() {

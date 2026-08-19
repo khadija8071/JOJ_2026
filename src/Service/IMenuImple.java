@@ -25,7 +25,7 @@ public class IMenuImple implements IMenu {
     private final IPaysService paysService = new IPaysServiceImple();
     private final IDisciplineService disciplineService = new IDisciplineServiceImple();
     private final IAthleteService athleteService = new IAthleteServiceImple();
-    private final ICompetitionService competitionService = new ICompetitionserviceImple();
+    private final ICompetitionService competitionService = new ICompetitionServiceImple();
     private final IResultatService resultatService = new IResultatServiceImple();
     private final IStatistiqueService statistiqueService = new IStatistiqueServiceImple();
 
@@ -57,7 +57,7 @@ public class IMenuImple implements IMenu {
             if (u == null) {
                 System.out.println("Login ou mot de passe incorrect.");
             } else {
-                System.out.println("Bienvenue " + u.getNomComplet() + " (" + u.getRole() + ") !");
+                System.out.println("Bienvenue " + u.getNom() + " (" + u.getRole() + ") !");
             }
         } catch (SQLException e) {
             System.out.println("Erreur de connexion à la base : " + e.getMessage());
@@ -142,12 +142,12 @@ public class IMenuImple implements IMenu {
                             System.out.println("Utilisateur introuvable.");
                             break;
                         }
-                        System.out.print("Nouveau nom complet (" + u.getNomComplet() + ") : ");
-                        u.setNomComplet(sc.nextLine().trim());
+                        System.out.print("Nouveau nom complet (" + u.getNom() + ") : ");
+                        u.setNom(sc.nextLine().trim());
                         System.out.print("Nouveau login (" + u.getLogin() + ") : ");
                         u.setLogin(sc.nextLine().trim());
                         System.out.print("Nouveau mot de passe : ");
-                        u.setMotDePasse(sc.nextLine().trim());
+                        u.setMdp(sc.nextLine().trim());
                         u.setRole(lireRole());
                         boolean ok = utilisateurService.modifier(u);
                         System.out.println(ok ? "Utilisateur modifié." : "Échec de la modification.");
@@ -376,9 +376,9 @@ public class IMenuImple implements IMenu {
                         System.out.print("Nouveau prénom (" + a.getPrenom() + ") : ");
                         a.setPrenom(sc.nextLine().trim());
                         a.setSexe(lireSexe());
-                        a.setDateNaissance(lireDate("Nouvelle date de naissance (jj/mm/aaaa) : "));
-                        a.setIdPays(lireInt("Nouvel ID pays : "));
-                        a.setIdDiscipline(lireInt("Nouvel ID discipline : "));
+                        a.setDateNaissance(sc.nextInt());
+                        a.setPays(("Nouvel ID pays : "));
+                        a.setDiscipline(("Nouvel ID discipline : "));
                         boolean ok = athleteService.modifier(a);
                         System.out.println(ok ? "Athlète modifié." : "Échec de la modification.");
                         break;
@@ -461,9 +461,9 @@ public class IMenuImple implements IMenu {
                         }
                         System.out.print("Nouveau nom (" + c.getNomCompetition() + ") : ");
                         c.setNomCompetition(sc.nextLine().trim());
-                        c.setDateCompetition(lireDate("Nouvelle date (jj/mm/aaaa) : "));
+                        c.setDateCompetition(Integer.parseInt(("Nouvelle date (jj/mm/aaaa) : ")));
                         c.setLieu(lireLieu());
-                        c.setIdDiscipline(lireInt("Nouvel ID discipline : "));
+                        c.setDiscipline(("Nouvel ID discipline : "));
                         boolean ok = competitionService.modifier(c);
                         System.out.println(ok ? "Compétition modifiée." : "Échec de la modification.");
                         break;
@@ -544,9 +544,9 @@ public class IMenuImple implements IMenu {
                             System.out.println("Résultat introuvable.");
                             break;
                         }
-                        r.setIdAthlete(lireInt("Nouvel ID athlète (" + r.getIdAthlete() + ") : "));
-                        r.setIdCompetition(lireInt("Nouvel ID compétition (" + r.getIdCompetition() + ") : "));
-                        r.setScore(lireDouble("Nouveau score (" + r.getScore() + ") : "));
+                        r.setId_Athlete(lireInt("Nouvel ID athlète (" + r.getId_Athlete() + ") : "));
+                        r.setId_compet(lireInt("Nouvel ID compétition (" + r.getId_compet() + ") : "));
+                        r.setScore(Integer.parseInt(("Nouveau score (" + r.getScore() + ") : ")));
                         r.setRang(lireInt("Nouveau rang (" + r.getRang() + ") : "));
                         boolean ok = resultatService.modifier(r);
                         System.out.println(ok ? "Résultat modifié." : "Échec de la modification.");
@@ -566,7 +566,7 @@ public class IMenuImple implements IMenu {
                         } else {
                             for (Resultat r : classement) {
                                 System.out.printf("Rang %d - Athlète #%d - Score %.2f - Médaille : %s%n",
-                                        r.getRang(), r.getIdAthlete(), r.getScore(), r.getMedaille());
+                                        r.getRang(), r.getId_Athlete(), r.getScore(), r.getMedaille());
                             }
                         }
                         break;

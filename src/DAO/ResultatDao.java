@@ -13,8 +13,6 @@ import java.util.Map;
 
 public class ResultatDao {
 
-    public class ResultatDAO {
-
         public boolean ajouter(Resultat r) throws SQLException {
             String sql = "INSERT INTO resultat (id_athlete, id_competition, score, rang) VALUES (?, ?, ?, ?)";
             Connection conn = Database.getConnection();
@@ -142,4 +140,3 @@ public class ResultatDao {
             return r;
         }
     }
-}

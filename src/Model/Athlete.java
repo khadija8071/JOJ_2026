@@ -1,5 +1,7 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class Athlete {
     private int  IdAthlete ;
     private String Nom ;
@@ -9,7 +11,13 @@ public class Athlete {
     private String Pays ;
     private String Discipline ;
 
-    public Athlete() {}
+
+    public Athlete(String nom, String prenom, String sexe, LocalDate dateNaissance, int idPays, int idDiscipline) {
+    }
+
+    public Athlete() {
+
+    }
 
     public int getIdAthlete() {
         return IdAthlete;

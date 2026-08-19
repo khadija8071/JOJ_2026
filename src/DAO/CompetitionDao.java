@@ -12,8 +12,6 @@ import java.util.List;
 
 public class CompetitionDao {
 
-    public class CompetitionDAO {
-
         public boolean ajouter(Competition c) throws SQLException {
             String sql = "INSERT INTO competition (nom_competition, date_competition, lieu, id_discipline) VALUES (?, ?, ?, ?)";
             Connection conn = Database.getConnection();
@@ -109,4 +107,4 @@ public class CompetitionDao {
             return c;
         }
     }
-}
+

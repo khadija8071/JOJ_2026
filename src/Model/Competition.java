@@ -1,12 +1,20 @@
 package Model;
 
+import java.time.LocalDate;
+
 public class Competition {
     private int IdCompetition ;
     private String NomCompetition ;
     private int DateCompetition ;
     private String Lieu ; // dk,saly,diamniadio
     private String Discipline ;
-    public Competition() {}
+
+    public Competition(String nom, LocalDate date, String lieu, int idDiscipline) {
+    }
+
+    public Competition() {
+
+    }
 
     public int getIdCompetition() {
         return IdCompetition;

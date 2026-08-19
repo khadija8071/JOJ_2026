@@ -4,8 +4,12 @@ public class Pays {
     private int IdPays ;
     private String nomPays ;
 private String  Continent ;
+    public Pays(String nom, String continent) {
+    }
 
-    public Pays() {}
+    public Pays() {
+
+    }
 
     public int getIdPays() {
         return IdPays;

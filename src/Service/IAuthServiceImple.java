@@ -1,27 +1,41 @@
 package Service;
 
-import DAO.Database;
+import DAO.UtilisateurDao;
+import Model.Utilisateur;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class IAuthServiceImple implements IAuthService{
-    @Override
-    public boolean trouverAdmin(String login, String password) {
-        try (Connection conn = Database.getConnection()) {
-            String sql = "SELECT * FROM utilisateur WHERE login=? AND password=?";
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, login);
-            ps.setString(2, password);
-            ResultSet rs = ps.executeQuery();
+public class IAuthServiceImple implements IAuthService {
 
-            return rs.next(); // true si utilisateur trouvé
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+    private final UtilisateurDao utilisateurDAO = new UtilisateurDao();
+    private Utilisateur utilisateurConnecte;
+
+    @Override
+    public Utilisateur connecter(String login, String motDePasse) throws SQLException {
+        Utilisateur u = utilisateurDAO.authentifier(login, motDePasse);
+        if (u != null) {
+            this.utilisateurConnecte = u;
         }
+        return u;
     }
 
+    @Override
+    public void deconnecter() {
+        this.utilisateurConnecte = null;
+    }
+
+    @Override
+    public Utilisateur getUtilisateurConnecte() {
+        return utilisateurConnecte;
+    }
+
+    @Override
+    public boolean estConnecte() {
+        return utilisateurConnecte != null;
+    }
+
+    @Override
+    public boolean estAdmin() {
+        return utilisateurConnecte != null && utilisateurConnecte.isAdmin();
+    }
 }

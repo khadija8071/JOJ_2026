@@ -56,10 +56,10 @@ public class IResultatServiceImple implements IResultatService {
     }
 
     private void verifier(Resultat r) throws SQLException {
-        if (athleteDAO.rechercherParId(r.getIdAthlete()) == null) {
+        if (athleteDAO.rechercherParId(r.getId_Athlete()) == null) {
             throw new IllegalArgumentException("L'athlète sélectionné n'existe pas.");
         }
-        if (competitionDAO.rechercherParId(r.getIdCompetition()) == null) {
+        if (competitionDAO.rechercherParId(r.getId_compet()) == null) {
             throw new IllegalArgumentException("La compétition sélectionnée n'existe pas.");
         }
         if (r.getRang() <= 0) {

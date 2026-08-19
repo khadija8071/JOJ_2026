@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 
-public class ICompetitionserviceImple implements ICompetitionService {
+public class ICompetitionServiceImple implements ICompetitionService {
 
     private static final Set<String> LIEUX_VALIDES = Set.of("Dakar", "Diamniadio", "Saly");
 
@@ -57,7 +57,7 @@ public class ICompetitionserviceImple implements ICompetitionService {
         if (c.getLieu() == null || !LIEUX_VALIDES.contains(c.getLieu())) {
             throw new IllegalArgumentException("Le lieu doit être Dakar, Diamniadio ou Saly.");
         }
-        if (disciplineDAO.rechercherParId(c.getIdDiscipline()) == null) {
+        if (disciplineDAO.rechercherParId(c.getIdCompetition()) == null) {
             throw new IllegalArgumentException("La discipline sélectionnée n'existe pas.");
         }
     }

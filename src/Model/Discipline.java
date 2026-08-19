@@ -5,7 +5,12 @@ public class Discipline {
     private String NomDiscipline ;
     private String  Description ;
 
-    public Discipline() {}
+    public Discipline(String nom, String description) {
+    }
+
+    public Discipline() {
+
+    }
 
     public int getIdDiscipline() {
         return IdDiscipline;

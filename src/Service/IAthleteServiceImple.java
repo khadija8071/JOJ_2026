@@ -59,10 +59,10 @@ public class IAthleteServiceImple implements IAthleteService {
         if (a.getNom() == null || a.getNom().isBlank() || a.getPrenom() == null || a.getPrenom().isBlank()) {
             throw new IllegalArgumentException("Le nom et le prénom sont obligatoires.");
         }
-        if (paysDAO.rechercherParId(a.getPays()) == null) {
+        if (paysDAO.rechercherParNom(a.getPays()) == null) {
             throw new IllegalArgumentException("Le pays sélectionné n'existe pas.");
         }
-        if (disciplineDAO.rechercherParId(a.getDiscipline()) == null) {
+        if (disciplineDAO.rechercherParNom(a.getDiscipline()) == null) {
             throw new IllegalArgumentException("La discipline sélectionnée n'existe pas.");
         }
     }
